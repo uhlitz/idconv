@@ -1,10 +1,11 @@
 #' List available fastqc analysis modules and their reported status
 #'
-#' \code{get_fastqc_modules} lists avaialble analysis modules from a fastqc report
+#' \code{IDX_to_IDY} converts ids from identifier X to identifier Y using AnnotationDbi
 #'
-#' @param file Path to fastqc_data.txt file
-#' @param report_linenumbers FALSE by default
-#' @return A data_frame of modules available in a fastqc_data.txt report and their report status
+#' @param IDX input id type (e.g. "SYMBOL")
+#' @param IDY output id type (e.g. "ENSEMBL")
+#' @param ids vector of input identifiers to be converted to output identifiers
+#' @return A vector of converted identifiers with same length as input identifiers
 #' @examples
 #' SYMBOL_to_ENTREZ(c("EGR1", "FOS"))
 #' ENTREZ_to_SYMBOL(c("1958", "2353"))
