@@ -9,8 +9,7 @@ License: GPL-3 + file LICENSE
 URL: https://github.com/uhlitz/idconv
 BugReports: https://github.com/uhlitz/idconv/issues
 LazyData: TRUE
-Imports:
-    magrittr,
+Depends:
     dplyr,
     AnnotationDbi,
     org.Hs.eg.db
