@@ -8,9 +8,9 @@
 \alias{SYMBOL_to_ENSEMBL}
 \alias{SYMBOL_to_ENTREZID}
 \alias{SYMBOL_to_REFSEQ}
-\title{List available fastqc analysis modules and their reported status}
+\title{Wrapper functions to convert gene identifiers in org.Hs.eg.db package}
 \usage{
-IDX_to_IDY(IDX, IDY, ids)
+IDX_to_IDY(ids, from, to)
 
 SYMBOL_to_ENTREZID(ids)
 
@@ -25,11 +25,11 @@ SYMBOL_to_REFSEQ(ids)
 REFSEQ_to_SYMBOL(ids)
 }
 \arguments{
-\item{IDX}{input id type (e.g. "SYMBOL")}
+\item{ids}{vector of source identifiers to be converted to target identifiers}
 
-\item{IDY}{output id type (e.g. "ENSEMBL")}
+\item{from}{source id type (e.g. "SYMBOL")}
 
-\item{ids}{vector of input identifiers to be converted to output identifiers}
+\item{to}{target id type (e.g. "ENSEMBL")}
 }
 \value{
 A vector of converted identifiers with same length as input identifiers
