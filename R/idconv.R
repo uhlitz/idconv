@@ -1,4 +1,4 @@
-#' List available fastqc analysis modules and their reported status
+#' Wrapper functions to convert gene identifiers in org.Hs.eg.db package
 #'
 #' \code{IDX_to_IDY} converts ids from identifier X to identifier Y using AnnotationDbi
 #'
@@ -13,14 +13,13 @@
 #' ENSEMBL_to_SYMBOL(c("ENSG00000120738", "ENSG00000170345"))
 #' @export
 IDX_to_IDY <- function(IDX, IDY, ids) {
-  AnnotationDbi::select(org.Hs.eg.db::org.Hs.eg.db, keys = unique(ids),
-                        columns = c(IDX, IDY),
-                        keytype = IDX) %>%
-    distinct_(IDX) %>% {
-      setNames(.[ ,IDY], .[ ,IDX])
-    } %>%
-    .[ids]
+  id_df <- AnnotationDbi::select(org.Hs.eg.db::org.Hs.eg.db, keys = unique(ids),
+                                 columns = c(IDX, IDY),
+                                 keytype = IDX)
+  id_df <- id_df[match(unique(id_df[, IDX]), id_df[, IDX]), ]
+  setNames(id_df[, IDY], id_df[, IDX])[ids]
 }
+
 #' @describeIn IDX_to_IDY convert from SYMBOL to ENTREZID
 #' @export
 SYMBOL_to_ENTREZID  <- function(ids) IDX_to_IDY("SYMBOL", "ENTREZID", ids = ids)

@@ -1,16 +1,17 @@
 Package: idconv
 Type: Package
-Title: hg19 id converter 
+Title: hg19 id converter
 Version: 0.1.0
 Authors@R: person("Florian", "Uhlitz", email = "uhlitz@hu-berlin.de",
   role = c("aut", "cre"))
-Description: Convert hg19 (GRCh37) identifiers 
+Description: This package contains wrapper functions to easily convert gene identifiers from
+    sources included in the org.Hs.eg.db package. Convert from SYMBOL to ENTREZID for the gene
+    FOS like this: SYMBOL_to_ENTREZID("FOS"). Conversions are without any warranty.
 License: GPL-3 + file LICENSE
 URL: https://github.com/uhlitz/idconv
 BugReports: https://github.com/uhlitz/idconv/issues
 LazyData: TRUE
-Depends:
-    dplyr,
+Imports:
     AnnotationDbi,
     org.Hs.eg.db
 RoxygenNote: 5.0.1
