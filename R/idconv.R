@@ -16,7 +16,7 @@ IDX_to_IDY <- function(ids, from, to) {
   id_df <- AnnotationDbi::select(org.Hs.eg.db::org.Hs.eg.db, keys = unique(ids),
                                  columns = c(from, to),
                                  keytype = from)
-  id_df <- id_df[match(unique(id_df[, from]), id_df[, to]), ]
+  id_df <- id_df[match(unique(id_df[, from]), id_df[, from]), ]
   setNames(id_df[, to], id_df[, from])[ids]
 }
 
