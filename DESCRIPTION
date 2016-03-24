@@ -13,7 +13,8 @@ BugReports: https://github.com/uhlitz/idconv/issues
 LazyData: TRUE
 Imports:
     AnnotationDbi,
-    org.Hs.eg.db
+    org.Hs.eg.db,
+    org.Mm.eg.db
 RoxygenNote: 5.0.1
 Suggests: testthat,
     knitr,

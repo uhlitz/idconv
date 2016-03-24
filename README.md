@@ -60,3 +60,27 @@ IDX_to_IDY(ids = "NM_005252", from = "REFSEQ", to = "SYMBOL")
 
     ## NM_005252 
     ##     "FOS"
+
+Non-unique mappings
+===================
+
+If more than one mapping is available, `AnnotationDbi` returns a warning (1:many mappings) and `idconv` wrapper functions return NAs for target ids by default. If desired, wrapper functions in this package can be forced to return unique mappings. Forcing unique mappings is however not recommended.
+
+``` r
+# example for non-unique mapping:
+SYMBOL_to_ENSEMBL("IER3")
+```
+
+    ## 'select()' returned 1:many mapping between keys and columns
+
+    ## IER3 
+    ##   NA
+
+``` r
+SYMBOL_to_ENSEMBL("IER3", force_unique = T)
+```
+
+    ## 'select()' returned 1:many mapping between keys and columns
+
+    ##              IER3 
+    ## "ENSG00000137331"
