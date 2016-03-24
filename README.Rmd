@@ -1,0 +1,32 @@
+---
+title: "idconv"
+output: github_document
+---
+
+Wrapper functions to convert gene identifiers available from the org.Hs.eg.db bioconductor package.
+
+# Installation  
+
+```{r, echo=F, warning=F}
+
+devtools::install_github("uhlitz/idconv")
+
+```
+
+# Examples
+
+```{r}
+
+library(idconv)
+
+# wrapper functions for specific identifiers:
+SYMBOL_to_ENTREZID(c("EGR1", "FOS"))
+ENTREZID_to_SYMBOL(c("1958", "2353"))
+SYMBOL_to_ENSEMBL(c("EGR1", "FOS"))
+ENSEMBL_to_SYMBOL(c("ENSG00000120738", "ENSG00000170345"))
+
+# generalised functions:
+IDX_to_IDY(ids = "NM_005252", from = "REFSEQ", to = "SYMBOL")
+
+```
+
