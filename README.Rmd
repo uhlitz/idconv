@@ -7,7 +7,7 @@ Wrapper functions to convert gene identifiers available from the org.Hs.eg.db bi
 
 # Installation  
 
-```{r, echo=F, warning=F}
+```
 
 devtools::install_github("uhlitz/idconv")
 

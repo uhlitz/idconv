@@ -6,8 +6,8 @@ Wrapper functions to convert gene identifiers available from the org.Hs.eg.db bi
 Installation
 ============
 
-    ## Skipping install for github remote, the SHA1 (1fe6150a) has not changed since last install.
-    ##   Use `force = TRUE` to force installation
+
+    devtools::install_github("uhlitz/idconv")
 
 Examples
 ========
