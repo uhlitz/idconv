@@ -45,15 +45,15 @@ IDX_to_IDY <- function(ids, from, to, to_sub = NULL, force_unique = F,
     if (is.na(force_unique)) {
 
       # ...or set them NA
-      id_df[id_df$SYMBOL %in% non_unique_ids, to] <- NA
+      id_df[id_df[, from] %in% non_unique_ids, to] <- NA
 
     }
 
     else {
 
       # and concatenate them...
-      id_df[id_df$SYMBOL %in% non_unique_ids, to] <-
-        paste(id_df[id_df$SYMBOL %in% non_unique_ids, to], collapse= ";")
+      id_df[id_df[, from] %in% non_unique_ids, to] <-
+        paste(id_df[id_df[, from] %in% non_unique_ids, to], collapse= ";")
 
     }
 

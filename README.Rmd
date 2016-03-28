@@ -3,7 +3,7 @@ title: "idconv"
 output: github_document
 ---
 
-Wrapper functions to convert gene identifiers available from the org.Hs.eg.db bioconductor package.
+`idconv` is an R package of wrapper functions to convert gene identifiers available from the `org.Hs.eg.db` or `org.Mm.eg.db` bioconductor packages.
 
 # Installation  
 

@@ -1,12 +1,13 @@
 Package: idconv
 Type: Package
-Title: hg19 id converter
-Version: 0.1.0
+Title: Conversion of gene IDs
+Version: 0.2.1
 Authors@R: person("Florian", "Uhlitz", email = "uhlitz@hu-berlin.de",
   role = c("aut", "cre"))
 Description: This package contains wrapper functions to easily convert gene identifiers from
-    sources included in the org.Hs.eg.db package. Convert from SYMBOL to ENTREZID for the gene
-    FOS like this: SYMBOL_to_ENTREZID("FOS"). Conversions are without any warranty.
+    sources included in the org.Hs.eg.db or other org.*.eg.db packages.
+    Convert from SYMBOL to ENTREZID for the gene FOS like this:
+    SYMBOL_to_ENTREZID("FOS"). Conversions are without any warranty.
 License: GPL-3 + file LICENSE
 URL: https://github.com/uhlitz/idconv
 BugReports: https://github.com/uhlitz/idconv/issues
