@@ -1,21 +1,23 @@
 ---
 title: "idconv"
-output: github_document
+author: "Florian Uhlitz"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{idconv}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
-
-Wrapper functions to convert gene identifiers available from the org.Hs.eg.db bioconductor package.
-
-# Installation  
-
-```
-
-devtools::install_github("uhlitz/idconv")
-
-```
 
 # Examples
 
 ## Wrapper functions for specific identifiers:
+
+You can choose from the following predefined functions:
+
+`SYMBOL_to_ENTREZID()`, `ENTREZID_to_SYMBOL`, `SYMBOL_to_ENSEMBL`, `ENSEMBL_to_SYMBOL`,
+`SYMBOL_to_REFSEQ`, `REFSEQ_to_SYMBOL`.
+
 
 ```{r}
 
@@ -27,11 +29,22 @@ ENSEMBL_to_SYMBOL(c("ENSG00000120738", "ENSG00000170345"))
 
 ```
 
-## Generalised function
+## Generic function
+
+You can use the generic function to map other identifiers:
 
 ```{r}
 
-IDX_to_IDY(ids = "NM_005252", from = "REFSEQ", to = "SYMBOL")
+IDX_to_IDY(ids = "NM_005252", from = "REFSEQ", to = "ENSEMBL")
+
+```
+
+Or simply define your own custom conversion function:
+
+```{r}
+
+REFSEQ_to_ENSEMBL <- function(ids) IDX_to_IDY(ids = ids, from = "REFSEQ", to = "ENSEMBL")
+REFSEQ_to_ENSEMBL("NM_005252")
 
 ```
 
@@ -60,3 +73,6 @@ SYMBOL_to_REFSEQ("IER3", to_sub = "NM")
 SYMBOL_to_REFSEQ("IER3", to_sub = "NP")
 
 ```
+
+
+

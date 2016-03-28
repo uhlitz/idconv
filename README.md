@@ -12,12 +12,15 @@ Installation
 Examples
 ========
 
+Wrapper functions for specific identifiers:
+-------------------------------------------
+
 ``` r
 library(idconv)
-
-# wrapper functions for specific identifiers:
 SYMBOL_to_ENTREZID(c("EGR1", "FOS"))
 ```
+
+    ## 
 
     ## 'select()' returned 1:1 mapping between keys and columns
 
@@ -51,8 +54,10 @@ ENSEMBL_to_SYMBOL(c("ENSG00000120738", "ENSG00000170345"))
     ## ENSG00000120738 ENSG00000170345 
     ##          "EGR1"           "FOS"
 
+Generalised function
+--------------------
+
 ``` r
-# generalised functions:
 IDX_to_IDY(ids = "NM_005252", from = "REFSEQ", to = "SYMBOL")
 ```
 
@@ -64,11 +69,19 @@ IDX_to_IDY(ids = "NM_005252", from = "REFSEQ", to = "SYMBOL")
 Non-unique mappings
 ===================
 
-If more than one mapping is available, `AnnotationDbi` returns a warning (1:many mappings) and `idconv` wrapper functions return NAs for target ids by default. If desired, wrapper functions in this package can be forced to return unique mappings. Forcing unique mappings is however not recommended.
+If more than one mapping is available, `AnnotationDbi` returns a warning (1:many mappings) and `idconv` wrapper functions return concatenated target IDs by default. If desired, wrapper functions in this package can be forced to return unique mappings. Forcing unique mappings is however not recommended.
 
 ``` r
-# example for non-unique mapping:
-SYMBOL_to_ENSEMBL("IER3")
+SYMBOL_to_ENSEMBL("IER3", force_unique = F) # default
+```
+
+    ## 'select()' returned 1:many mapping between keys and columns
+
+    ##                                                                                              IER3 
+    ## "ENSG00000137331;ENSG00000235030;ENSG00000227231;ENSG00000237155;ENSG00000206478;ENSG00000230128"
+
+``` r
+SYMBOL_to_ENSEMBL("IER3", force_unique = NA)
 ```
 
     ## 'select()' returned 1:many mapping between keys and columns
@@ -84,3 +97,26 @@ SYMBOL_to_ENSEMBL("IER3", force_unique = T)
 
     ##              IER3 
     ## "ENSG00000137331"
+
+Subtype IDs
+===========
+
+When converting to RefSeq, a subtype for target IDs can be specified, eg. `NM` or `NP`:
+
+``` r
+SYMBOL_to_REFSEQ("IER3", to_sub = "NM")
+```
+
+    ## 'select()' returned 1:many mapping between keys and columns
+
+    ##                  IER3 
+    ## "NM_003897;NM_052815"
+
+``` r
+SYMBOL_to_REFSEQ("IER3", to_sub = "NP")
+```
+
+    ## 'select()' returned 1:many mapping between keys and columns
+
+    ##        IER3 
+    ## "NP_003888"
