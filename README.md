@@ -15,6 +15,10 @@ Examples
 Wrapper functions for specific identifiers:
 -------------------------------------------
 
+You can choose from the following predefined functions:
+
+`SYMBOL_to_ENTREZID()`, `ENTREZID_to_SYMBOL`, `SYMBOL_to_ENSEMBL`, `ENSEMBL_to_SYMBOL`, `SYMBOL_to_REFSEQ`, `REFSEQ_to_SYMBOL`.
+
 ``` r
 library(idconv)
 SYMBOL_to_ENTREZID(c("EGR1", "FOS"))
@@ -54,17 +58,31 @@ ENSEMBL_to_SYMBOL(c("ENSG00000120738", "ENSG00000170345"))
     ## ENSG00000120738 ENSG00000170345 
     ##          "EGR1"           "FOS"
 
-Generalised function
---------------------
+Generic function
+----------------
+
+You can use the generic function to map other identifiers:
 
 ``` r
-IDX_to_IDY(ids = "NM_005252", from = "REFSEQ", to = "SYMBOL")
+IDX_to_IDY(ids = "NM_005252", from = "REFSEQ", to = "ENSEMBL")
 ```
 
     ## 'select()' returned 1:1 mapping between keys and columns
 
-    ## NM_005252 
-    ##     "FOS"
+    ##         NM_005252 
+    ## "ENSG00000170345"
+
+Or simply define your own custom conversion function:
+
+``` r
+REFSEQ_to_ENSEMBL <- function(ids) IDX_to_IDY(ids = ids, from = "REFSEQ", to = "ENSEMBL")
+REFSEQ_to_ENSEMBL("NM_005252")
+```
+
+    ## 'select()' returned 1:1 mapping between keys and columns
+
+    ##         NM_005252 
+    ## "ENSG00000170345"
 
 Non-unique mappings
 ===================

@@ -31,6 +31,8 @@ body {
 <pre><code>devtools::install_github(&quot;uhlitz/idconv&quot;)</code></pre>
 <h1 id="examples">Examples</h1>
 <h2 id="wrapper-functions-for-specific-identifiers">Wrapper functions for specific identifiers:</h2>
+<p>You can choose from the following predefined functions:</p>
+<p><code>SYMBOL_to_ENTREZID()</code>, <code>ENTREZID_to_SYMBOL</code>, <code>SYMBOL_to_ENSEMBL</code>, <code>ENSEMBL_to_SYMBOL</code>, <code>SYMBOL_to_REFSEQ</code>, <code>REFSEQ_to_SYMBOL</code>.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(idconv)
 <span class="kw">SYMBOL_to_ENTREZID</span>(<span class="kw">c</span>(<span class="st">&quot;EGR1&quot;</span>, <span class="st">&quot;FOS&quot;</span>))</code></pre>
 <pre><code>## 
@@ -54,12 +56,20 @@ body {
 
 ## ENSG00000120738 ENSG00000170345 
 ##          &quot;EGR1&quot;           &quot;FOS&quot;</code></pre>
-<h2 id="generalised-function">Generalised function</h2>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">IDX_to_IDY</span>(<span class="dt">ids =</span> <span class="st">&quot;NM_005252&quot;</span>, <span class="dt">from =</span> <span class="st">&quot;REFSEQ&quot;</span>, <span class="dt">to =</span> <span class="st">&quot;SYMBOL&quot;</span>)</code></pre>
+<h2 id="generic-function">Generic function</h2>
+<p>You can use the generic function to map other identifiers:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">IDX_to_IDY</span>(<span class="dt">ids =</span> <span class="st">&quot;NM_005252&quot;</span>, <span class="dt">from =</span> <span class="st">&quot;REFSEQ&quot;</span>, <span class="dt">to =</span> <span class="st">&quot;ENSEMBL&quot;</span>)</code></pre>
 <pre><code>## 'select()' returned 1:1 mapping between keys and columns
 
-## NM_005252 
-##     &quot;FOS&quot;</code></pre>
+##         NM_005252 
+## &quot;ENSG00000170345&quot;</code></pre>
+<p>Or simply define your own custom conversion function:</p>
+<pre class="sourceCode r"><code class="sourceCode r">REFSEQ_to_ENSEMBL &lt;-<span class="st"> </span>function(ids) <span class="kw">IDX_to_IDY</span>(<span class="dt">ids =</span> ids, <span class="dt">from =</span> <span class="st">&quot;REFSEQ&quot;</span>, <span class="dt">to =</span> <span class="st">&quot;ENSEMBL&quot;</span>)
+<span class="kw">REFSEQ_to_ENSEMBL</span>(<span class="st">&quot;NM_005252&quot;</span>)</code></pre>
+<pre><code>## 'select()' returned 1:1 mapping between keys and columns
+
+##         NM_005252 
+## &quot;ENSG00000170345&quot;</code></pre>
 <h1 id="non-unique-mappings">Non-unique mappings</h1>
 <p>If more than one mapping is available, <code>AnnotationDbi</code> returns a warning (1:many mappings) and <code>idconv</code> wrapper functions return concatenated target IDs by default. If desired, wrapper functions in this package can be forced to return unique mappings. Forcing unique mappings is however not recommended.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">SYMBOL_to_ENSEMBL</span>(<span class="st">&quot;IER3&quot;</span>, <span class="dt">force_unique =</span> F) <span class="co"># default</span></code></pre>

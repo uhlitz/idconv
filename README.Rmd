@@ -17,6 +17,12 @@ devtools::install_github("uhlitz/idconv")
 
 ## Wrapper functions for specific identifiers:
 
+You can choose from the following predefined functions:
+
+`SYMBOL_to_ENTREZID()`, `ENTREZID_to_SYMBOL`, `SYMBOL_to_ENSEMBL`, `ENSEMBL_to_SYMBOL`,
+`SYMBOL_to_REFSEQ`, `REFSEQ_to_SYMBOL`.
+
+
 ```{r}
 
 library(idconv)
@@ -27,11 +33,22 @@ ENSEMBL_to_SYMBOL(c("ENSG00000120738", "ENSG00000170345"))
 
 ```
 
-## Generalised function
+## Generic function
+
+You can use the generic function to map other identifiers:
 
 ```{r}
 
-IDX_to_IDY(ids = "NM_005252", from = "REFSEQ", to = "SYMBOL")
+IDX_to_IDY(ids = "NM_005252", from = "REFSEQ", to = "ENSEMBL")
+
+```
+
+Or simply define your own custom conversion function:
+
+```{r}
+
+REFSEQ_to_ENSEMBL <- function(ids) IDX_to_IDY(ids = ids, from = "REFSEQ", to = "ENSEMBL")
+REFSEQ_to_ENSEMBL("NM_005252")
 
 ```
 
