@@ -52,8 +52,12 @@ IDX_to_IDY <- function(ids, from, to, to_sub = NULL, force_unique = F,
     else {
 
       # and concatenate them...
-      id_df[id_df[, from] %in% non_unique_ids, to] <-
-        paste(id_df[id_df[, from] %in% non_unique_ids, to], collapse= ";")
+      for (i in 1:length(non_unique_ids)) {
+
+        id_df[id_df[, from] %in% non_unique_ids[i], to] <-
+          paste(id_df[id_df[, from] %in% non_unique_ids[i], to], collapse= ";")
+
+      }
 
     }
 

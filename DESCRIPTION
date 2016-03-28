@@ -1,7 +1,7 @@
 Package: idconv
 Type: Package
 Title: Conversion of gene IDs
-Version: 0.2.1
+Version: 0.2.2
 Authors@R: person("Florian", "Uhlitz", email = "uhlitz@hu-berlin.de",
   role = c("aut", "cre"))
 Description: This package contains wrapper functions to easily convert gene identifiers from
