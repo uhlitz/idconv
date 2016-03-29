@@ -1,12 +1,19 @@
 idconv
 ================
 
-Wrapper functions to convert gene identifiers available from the org.Hs.eg.db bioconductor package.
+`idconv` is an R package of wrapper functions to convert gene identifiers available from the `org.Hs.eg.db` or `org.Mm.eg.db` bioconductor packages.
 
 Installation
 ============
 
 
+    # install bioconductor dependencies
+    source("http://bioconductor.org/biocLite.R")
+    if(!require(AnnotationDbi)) biocLite("AnnotationDbi")
+    if(!require(org.Hs.eg.db)) biocLite("org.Hs.eg.db")
+    if(!require(org.Mm.eg.db)) biocLite("org.Mm.eg.db")
+
+    # install idconv
     devtools::install_github("uhlitz/idconv")
 
 Examples
@@ -23,8 +30,6 @@ You can choose from the following predefined functions:
 library(idconv)
 SYMBOL_to_ENTREZID(c("EGR1", "FOS"))
 ```
-
-    ## 
 
     ## 'select()' returned 1:1 mapping between keys and columns
 
@@ -96,7 +101,7 @@ SYMBOL_to_ENSEMBL("IER3", force_unique = F) # default
     ## 'select()' returned 1:many mapping between keys and columns
 
     ##                                                                                              IER3 
-    ## "ENSG00000137331;ENSG00000235030;ENSG00000227231;ENSG00000237155;ENSG00000206478;ENSG00000230128"
+    ## "ENSG00000137331;ENSG00000237155;ENSG00000235030;ENSG00000227231;ENSG00000230128;ENSG00000206478"
 
 ``` r
 SYMBOL_to_ENSEMBL("IER3", force_unique = NA)

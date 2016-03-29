@@ -9,6 +9,12 @@ output: github_document
 
 ```
 
+# install bioconductor dependencies
+source("http://bioconductor.org/biocLite.R")
+if(!require(org.Hs.eg.db)) biocLite("org.Hs.eg.db")
+if(!require(org.Mm.eg.db)) biocLite("org.Mm.eg.db")
+
+# install idconv
 devtools::install_github("uhlitz/idconv")
 
 ```
